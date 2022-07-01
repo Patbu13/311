@@ -1,0 +1,4 @@
+Core of an operating system, always running to keep the computer/OS "alive"
+Manage resources, establish UI, and software / application compatibility
+Speed up application performance through efficient data access, faster than main memory
+Process table (info about all the running processes), file table (entries for all files in the computer), and virtual (stored in main memory, all file manipulation descriptions)/index (info about directory, access perms, etc) node info
