@@ -1,15 +1,30 @@
+Describe the "kernel".
 Core of an operating system, always running to keep the computer/OS "alive"
+What are the three main purposes of an operating system?
 Manage resources, establish UI, and software / application compatibility
+Give two reasons why caches are useful.
 Speed up application performance through efficient data access, faster than main memory
+Name and describe three kernel data structures.
 Process table (info about all the running processes), file table (entries for all files in the computer), and virtual (stored in main memory, all file manipulation descriptions)/index (info about directory, access perms, etc) node info
+Describe the difference between policy and mechanism.
 Policy is the way activities to perform are chosen, mechanisms enforce these policies
+Describe both Asymmetric and Symmetric Multiprocessing?
 Asymmetric Multiprocessing inequally chooses which CPUs to perform tasks; symmetric is "parallel," distributing the CPU workload equally
+What is the main advantage and disadvantages of the layered approach to system design?
 Pros include smaller scopes in testing, isolation between layers to limit unforseen changes; cons include management cost and performance with more layers
+Describe a micro-kernel operating system structure.
 No OS system services, solely low level architecture such as IPC, memory management, and CPU scheduling
+List five services provided by an operating system, and explain how each creates convenience for users.
 1) Program execution: user does not need to worry about resource management when using a program. 2) Program creation: provides tools like editors and debuggers to help user write code. 3) File Management: user is able to save files long term and access in an effective and ordered manner. 4) Communication: allows user / user's computer to communicate over a network. 5) Error detection: OS detects attempts to access illegal memory, handles memory errors, or connection failures and notifies user.
+Using Unix/POSIX operating system calls, write a command line statement that merges together two files into a new file, where the contents of the first file are concatenated with the contents of the second. These files do not have to "mesh".
 cat file1 file 2 > newFile
+How are course grades determined?
 4 Homeworks at 25% each, optional final exam to replace lowest homework
+Describe what the Final Exam does.
 (optionally) Replaces lowest homework grade
+Which language must all programming assignments be written?
 Java
+When must a regrade request occur?
 Within 1 week of the assignment being graded
+True or False. It is acceptable to work in groups on homework assignments.
 False
