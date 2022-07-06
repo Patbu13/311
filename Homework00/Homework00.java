@@ -9,6 +9,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.Scanner;
 
 /*
  * Homework 00, intended to take "questions" and "answers" files
@@ -16,13 +17,25 @@ import java.io.IOException;
  */
 public class Homework00 {
     public static void main(String[] args) {
+
+        /*
+         * User Interface
+         */
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("Provide the complete path for the Questions.txt file's repository (NOT ending with Questions.txt)");
+        String queFile = scanner.nextLine();
+        System.out.println("Provide the complete path for the Answers.txt file's repository (NOT ending with Answers.txt)");
+        String ansFile = scanner.nextLine();
+        System.out.println("Provide the complete path to the repository where you would like the answers file written (ex: \\Homework00)");
+        String solFile = scanner.nextLine();
         try {
             /*
              * Creating ability to read / write to files
              */
-            BufferedReader AnsReader = new BufferedReader(new FileReader("Homework00\\Answers.txt"));
-            BufferedReader QueReader = new BufferedReader(new FileReader("Homework00\\Questions.txt"));
-            BufferedWriter writer = new BufferedWriter(new FileWriter("Homework00\\Solutions.txt"));
+            BufferedReader AnsReader = new BufferedReader(new FileReader(ansFile + "\\Answers.txt"));
+            BufferedReader QueReader = new BufferedReader(new FileReader(queFile + "\\Questions.txt"));
+            BufferedWriter writer = new BufferedWriter(new FileWriter(solFile + "\\Solutions.txt"));
             
             /*
              * Call function to combine files in the previously addressed manner
@@ -35,7 +48,10 @@ public class Homework00 {
             AnsReader.close();
             QueReader.close();
             writer.close();
+            scanner.close();
+            System.out.println("Complete!");
         } catch (IOException e) {
+            System.out.println("File read error");
             e.printStackTrace();
         }
 
