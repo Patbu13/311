@@ -61,6 +61,6 @@ public class SimpleRobot extends Thread //Extends (inheritance) the functionalit
 	 */
 	public void update()
 	{
-		//TODO determine how the robot will move. This type of robot does not move but other may need to override this, and set the X and Y coordinates.
+		//This robot does not move
 	}
 }

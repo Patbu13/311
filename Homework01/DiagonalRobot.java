@@ -9,8 +9,8 @@ public class DiagonalRobot extends SimpleRobot //Extends (inheritance) the funct
 {
 	private int x,y;//Location of the Robot
 	private Color rColor = Color.DARK_GRAY;//Default Color
-    private int xSpeed, ySpeed;
-    private boolean xDirection, yDirection = true;
+    private int xSpeed, ySpeed; //Speed in each direction
+    private boolean xDirection, yDirection = true; //Tells robot to inc/dec for x or y value
 	public static final int ROBOT_SIZE = 15;//Robot's are 15 pixel circles
 	public static final int TIME_DELAY = 30;//Update is called every 30 milliseconds.
 	public DiagonalRobot(int aX, int aY, Color aC, int xSpeed, int ySpeed)
@@ -79,7 +79,7 @@ public class DiagonalRobot extends SimpleRobot //Extends (inheritance) the funct
 	 */
 	public void update()
 	{
-		//TODO determine how the robot will move. This type of robot does not move but other may need to override this, and set the X and Y coordinates.
+		//Sets the x direction for the robot, bouncing when it hits the L/R edges
         if (xDirection) {
             this.x += this.xSpeed;
             if (this.x >= RobotThreadSimulator.FRAME_DIM - ROBOT_SIZE*2) {
@@ -92,6 +92,7 @@ public class DiagonalRobot extends SimpleRobot //Extends (inheritance) the funct
                 xDirection = true;
             }
         }
+        //Sets the y direction for the robot, bouncing when it hits the T/B edges
         if (yDirection) {
             this.y += this.ySpeed;
             if (this.y >= RobotThreadSimulator.FRAME_DIM - ROBOT_SIZE*4) {

@@ -1,5 +1,5 @@
 /**
- * Written by JJ Shepherd
+ * Written by JJ Shepherd // Patrick Burroughs
  * This class creates a new JPanel that will specifically draw the robot's.
  */
 import java.awt.*;
@@ -19,7 +19,7 @@ public class RobotPanel extends JPanel //Extends (inheritance) the functionality
 		//Set's the JPanel's Preferred Size to be the same as the Frame.
 		super.setPreferredSize(new Dimension(RobotThreadSimulator.FRAME_DIM,RobotThreadSimulator.FRAME_DIM));
 		
-		//TODO Add Robots to the Array
+		//Creates and adds all 8 robots to the array
 		
 		//2 Simple Robots
 		robots[0] = new SimpleRobot(7, 0, Color.GREEN);
@@ -35,7 +35,7 @@ public class RobotPanel extends JPanel //Extends (inheritance) the functionality
 		robots[7] = new WavyRobot(7,420, Color.PINK, 12, 12, 8);
 		//See assignment requirements for more details
 		
-		//TODO Start each robot thread
+		//Create and start threads for each robot
 		Thread greenBot = new Thread(robots[0]);
 		Thread redBot = new Thread(robots[1]);
 		Thread slowLR = new Thread(robots[2]);

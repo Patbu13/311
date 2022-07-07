@@ -9,8 +9,8 @@ public class LRRobot extends SimpleRobot //Extends (inheritance) the functionali
 {
 	private int x,y;//Location of the Robot
 	private Color rColor = Color.DARK_GRAY;//Default Color
-    private int rSpeed;
-    private boolean direction = true;
+    private int rSpeed; //Speed of robot in L/R direction
+    private boolean direction = true; //Tells robot to travel left/right
 	public static final int ROBOT_SIZE = 15;//Robot's are 15 pixel circles
 	public static final int TIME_DELAY = 30;//Update is called every 30 milliseconds.
 	public LRRobot(int aX, int aY, Color aC, int rSpeed)
@@ -71,7 +71,7 @@ public class LRRobot extends SimpleRobot //Extends (inheritance) the functionali
 	 */
 	public void update()
 	{
-		//TODO determine how the robot will move. This type of robot does not move but other may need to override this, and set the X and Y coordinates.
+		//Sets the x direction for the robot, bouncing when it hits the L/R edges
         if (direction) {
             this.x += this.rSpeed;
             if (this.x >= RobotThreadSimulator.FRAME_DIM - ROBOT_SIZE*2) {
