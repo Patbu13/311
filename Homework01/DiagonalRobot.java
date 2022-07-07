@@ -52,6 +52,7 @@ public class DiagonalRobot extends SimpleRobot //Extends (inheritance) the funct
 	public void setXSpeed(int speed) {
 		this.xSpeed = speed;
 	}
+    
     public int getYSpeed() {
 		return ySpeed;
 	}

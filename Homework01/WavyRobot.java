@@ -3,17 +3,34 @@
  * This class represents Simple Robots that runs and updates on a separate threads.
  */
 import java.lang.Thread;
+import java.util.function.ToDoubleFunction;
 import java.awt.*;
 
 public class WavyRobot extends SimpleRobot //Extends (inheritance) the functionality of Thread in order to update the Robot's position
 {
 	private int x,y;//Location of the Robot
 	private Color rColor = Color.DARK_GRAY;//Default Color
+    private int xSpeed, initY, period, amplitude;
+    /*
+     * EXPERIMENT: "Bouncing" on L/R GUI border
+     * found way to maintain vertical momentum when switching x direction
+     * using xRunna; dot continues smooth motion instead of
+     * inverting on a repeated path
+     * 
+     * private int xRunna
+     */
+    ;
+    private boolean direction = true;
 	public static final int ROBOT_SIZE = 15;//Robot's are 15 pixel circles
 	public static final int TIME_DELAY = 30;//Update is called every 30 milliseconds.
-	public WavyRobot(int aX, int aY, Color aC)
+	public WavyRobot(int aX, int aY, Color aC, int xS, int period, int amp)
 	{
 		super(aX, aY, aC);
+        this.initY = aY;
+        this.rColor = aC;
+        this.xSpeed = xS;
+        this.period = period;
+        this.amplitude = amp;
 	}
 	
 	public int getX() {
@@ -40,11 +57,35 @@ public class WavyRobot extends SimpleRobot //Extends (inheritance) the functiona
 		this.rColor = rColor;
 	}
 	
+    public int getXSpeed() {
+		return xSpeed;
+	}
+
+	public void setXSpeed(int speed) {
+		this.xSpeed = speed;
+	}
+
+    public int getPeriod() {
+		return period;
+	}
+
+	public void setPeriod(int period) {
+		this.period = period;
+	}
+
+    public int getAmplitude() {
+		return amplitude;
+	}
+
+	public void setAmplitude(int amplitude) {
+		this.amplitude = amplitude;
+	}
 	/**
 	 * Overrides the method run in Thread. This calls the method update and sleeps the thread for 30 milliseconds before calling update again.
 	 */
 	public void run()
 	{
+        //xRunna = this.x;
 		while(true)
 		{
 			//Calls update on each robot
@@ -60,5 +101,20 @@ public class WavyRobot extends SimpleRobot //Extends (inheritance) the functiona
 	public void update()
 	{
 		//TODO determine how the robot will move. This type of robot does not move but other may need to override this, and set the X and Y coordinates.
-	}
+        if (direction) {
+            this.x += this.xSpeed;
+            if (this.x >= RobotThreadSimulator.FRAME_DIM - ROBOT_SIZE*2) {
+                direction = false;
+            }
+        }
+        else {
+            this.x -= this.xSpeed;
+            if (this.x <= 0) {
+                direction = true;
+            }
+        }
+        //xRunna+=xSpeed;
+        //TO USE xRunna, must change below "this.x" to "xRunna" & remove all comment outs
+        this.y = (int)(initY + (Math.sin(this.x*period)*amplitude));
+    }
 }

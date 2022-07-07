@@ -31,8 +31,8 @@ public class RobotPanel extends JPanel //Extends (inheritance) the functionality
 		robots[4] = new DiagonalRobot(7, 70, Color.ORANGE, 3, 5);
 		robots[5] = new DiagonalRobot(7,90, Color.ORANGE, 5, 3);
 		//2 Wavy Robots
-		robots[6] = new WavyRobot(7,110, Color.PINK);
-		robots[7] = new WavyRobot(7,110, Color.PINK);
+		robots[6] = new WavyRobot(7,310, Color.PINK, 7, 9, 20);
+		robots[7] = new WavyRobot(7,420, Color.PINK, 12, 12, 8);
 		//See assignment requirements for more details
 		
 		//TODO Start each robot thread
