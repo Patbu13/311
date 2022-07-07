@@ -4,6 +4,8 @@
  */
 import java.awt.*;
 import javax.swing.*;
+import javax.swing.text.AttributeSet.ColorAttribute;
+import javax.swing.text.StyleConstants.ColorConstants;
 
 public class RobotPanel extends JPanel //Extends (inheritance) the functionality of the JPanel Component in order to draw Robots. 
 {
@@ -20,21 +22,37 @@ public class RobotPanel extends JPanel //Extends (inheritance) the functionality
 		//TODO Add Robots to the Array
 		
 		//2 Simple Robots
-
-		
+		robots[0] = new SimpleRobot(7, 0, Color.GREEN);
+		robots[1] = new SimpleRobot(17, 10, Color.RED);
 		//2 Left Right Robots
-
-		
+		robots[2] = new LRRobot(7,30, Color.BLUE, 3);
+		robots[3] = new LRRobot(7,50, Color.BLUE, 5);
 		//2 Diagonal Robots
-
-		
+		robots[4] = new DiagonalRobot(7, 70, Color.ORANGE, 3, 5);
+		robots[5] = new DiagonalRobot(7,90, Color.ORANGE, 5, 3);
 		//2 Wavy Robots
-
-		
+		robots[6] = new WavyRobot(7,110, Color.PINK);
+		robots[7] = new WavyRobot(7,110, Color.PINK);
 		//See assignment requirements for more details
 		
 		//TODO Start each robot thread
+		Thread greenBot = new Thread(robots[0]);
+		Thread redBot = new Thread(robots[1]);
+		Thread slowLR = new Thread(robots[2]);
+		Thread fastLR = new Thread(robots[3]);
+		Thread slowDiag = new Thread(robots[4]);
+		Thread fastDiag = new Thread(robots[5]);
+		Thread slowWavy = new Thread(robots[6]);
+		Thread fastWavy = new Thread(robots[7]);
 
+		greenBot.start();
+		redBot.start();
+		slowLR.start();
+		fastLR.start();
+		slowDiag.start();
+		fastDiag.start();
+		slowWavy.start();
+		fastWavy.start();
 	}
 	
 	/**
