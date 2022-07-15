@@ -42,9 +42,10 @@ public class SRTFScheduler extends BasicScheduler {
         else {
             if (readyQ.peek() != runningProcess && localCount < totalProcesses) {
                 
-                addProcess(getRunningProcess());
+                //addProcess(getRunningProcess());
                 localCount = totalProcesses + 1;
-                dispatch();
+				getRunningProcess().setPriority(getRunningProcess().getTotalLines()-getRunningProcess().getProgramCounter());
+                //dispatch();
                 
             }
         }
