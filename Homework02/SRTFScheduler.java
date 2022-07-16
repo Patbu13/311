@@ -12,7 +12,7 @@ public class SRTFScheduler extends BasicScheduler {
     }
 
     /**
-	 * Selects the next process to become the running process
+	 * Modified to POLL
 	 */
 	public void dispatch()
 	{
@@ -40,17 +40,24 @@ public class SRTFScheduler extends BasicScheduler {
 			dispatch();
 		}
         else {
+			/*
+			 * Two conditions
+			 * a) is the highest priority NOT running
+			 * b) has there been a process added
+			 */
             if (readyQ.peek() != runningProcess && localCount < totalProcesses) {
-                
-                //addProcess(getRunningProcess());
+            
                 localCount = totalProcesses + 1;
 				getRunningProcess().setPriority(getRunningProcess().getTotalLines()-getRunningProcess().getProgramCounter());
-                //dispatch();
                 
             }
         }
 	}
 
+	/**
+	 * When added, every process has its priority initialized correctly
+	 * OR is updated to reflect progress
+	 */
     public void addProcess(BasicPCB p)
 	{
 		totalProcesses++;

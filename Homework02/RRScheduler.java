@@ -1,3 +1,8 @@
+/*
+ * Written by Patrick Burroughs - CSCE 311
+ * JJ Shepherd - 7/15/22
+ * Round Robin Scheduler
+ */
 import java.util.*;
 public class RRScheduler extends BasicScheduler {
 
@@ -6,9 +11,12 @@ public class RRScheduler extends BasicScheduler {
 
     public RRScheduler(int RR) {
         this.readyQ = new LinkedList<BasicPCB>();
-        quantum = RR;
+        quantum = RR; //used to keep track of the quantum number for this instance
     }
 
+	/**
+	 * Modified to poll the linked list
+	 */
     public void dispatch()
     {
 		if(readyQ.isEmpty())
@@ -20,6 +28,9 @@ public class RRScheduler extends BasicScheduler {
 		runningProcess = readyQ.poll();
     }
 
+	/*
+	 * Intended to check every 10 ticks to dispatch
+	 */
     public void updateRunningProcess()
 	{
         currentPTick++;
@@ -32,11 +43,13 @@ public class RRScheduler extends BasicScheduler {
 		runningProcess.nextLine();
 		if(runningProcess.hasCompleted())
 		{
+			currentPTick = 0;
 			runningProcess.setCompletionTick(tickCount);
 			waitingTimeSum += (runningProcess.getCompletionTick() - runningProcess.getArrivalTick());
 			dispatch();
 		}   else if (currentPTick == quantum) {
             addProcess(runningProcess);
+			currentPTick = 0;
             dispatch();
         }
 	}
