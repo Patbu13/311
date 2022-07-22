@@ -12,7 +12,7 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
- public class Homework3 {
+ public class Homework03 {
 
     static int projects = 0, resources = 0;
     static ArrayList<Integer> sequence = new ArrayList<>();
@@ -36,14 +36,13 @@ import java.util.ArrayList;
             
             projects = Integer.parseInt(AllocReader.readLine());
             resources = Integer.parseInt(AllocReader.readLine());
+
             /*
              * Call function to read the files in the previously addressed manner
              */
             ArrayList<ArrayList<Integer>> AllocMatrix = FormMatrix(AllocReader);
             ArrayList<ArrayList<Integer>> ReqMatrix = FormMatrix(ReqReader);
-            ArrayList<ArrayList<Integer>> AvailMatrix = FormMatrix(AvailReader);
-            ArrayList<ArrayList<Integer>> tempReq = ReqMatrix;
-                
+            ArrayList<ArrayList<Integer>> AvailMatrix = FormMatrix(AvailReader);                
 
             /*
              * Check for a deadlock
@@ -53,7 +52,7 @@ import java.util.ArrayList;
 
              if (Deadlock(AllocMatrix, ReqMatrix, AvailMatrix)) {
                 //send req and find proj w/ max resources requested
-                System.out.println("There is a deadlock, however, this can be eliminated by putting off Project #" + checkNeedy(tempReq));
+                System.out.println("There is a deadlock, however, this can be eliminated by putting off Project #" + checkNeedy(ReqMatrix));
              }
              else {
                 System.out.println("There is no deadlock.\nSequence: ");
@@ -117,6 +116,13 @@ import java.util.ArrayList;
         return newMatrix;
     }
     
+    /**
+     * Used to find any deadlocks in the project plan and return if one is found or not
+     * @param alloc matrix for allocated resources
+     * @param req matrix for requested resources
+     * @param avail matrix for available resources
+     * @return whether a deadlock is found or not
+     */
     public static boolean Deadlock(ArrayList<ArrayList<Integer>> alloc, ArrayList<ArrayList<Integer>> req, ArrayList<ArrayList<Integer>> avail) {
         int seqFin = 0, lockCount = 0;
         //iterate through projects until deadlock or sequence found
@@ -152,16 +158,21 @@ import java.util.ArrayList;
         return false;
     }
 
-    public static Integer checkNeedy(ArrayList<ArrayList<Integer>> tempReq) {
+    /**
+     * Finds the most resource intensive project to put off to break the deadlock
+     * @param req the request matrix
+     * @return
+     */
+    public static Integer checkNeedy(ArrayList<ArrayList<Integer>> req) {
         int maxRes = 0, tempRes = 0, theMax = 0;
 
-        for (ArrayList<Integer> i : tempReq) {
+        for (ArrayList<Integer> i : req) {
             for (int j : i) {
                 tempRes += j;
             }
             if (tempRes > maxRes) {
                 maxRes = tempRes;
-                theMax = tempReq.indexOf(i);
+                theMax = req.indexOf(i);
             }
         }
         return theMax;
