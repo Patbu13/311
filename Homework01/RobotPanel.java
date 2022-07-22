@@ -4,8 +4,6 @@
  */
 import java.awt.*;
 import javax.swing.*;
-import javax.swing.text.AttributeSet.ColorAttribute;
-import javax.swing.text.StyleConstants.ColorConstants;
 
 public class RobotPanel extends JPanel //Extends (inheritance) the functionality of the JPanel Component in order to draw Robots. 
 {

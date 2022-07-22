@@ -3,7 +3,6 @@
  * This class represents Simple Robots that runs and updates on a separate threads.
  */
 import java.lang.Thread;
-import java.util.function.ToDoubleFunction;
 import java.awt.*;
 
 public class WavyRobot extends SimpleRobot //Extends (inheritance) the functionality of Thread in order to update the Robot's position
