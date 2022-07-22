@@ -141,7 +141,6 @@ import java.util.ArrayList;
                 if (j == resources) {
                     seqFin++;
                     sequence.add(i%projects);
-                    System.out.println(i%projects);
                     lockCount=0;
                     //adds the previously allocated resources to available
                     for (int k = 0; k < resources; k++) {
