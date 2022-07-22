@@ -25,7 +25,7 @@ import java.util.ArrayList;
         Scanner scanner = new Scanner(System.in);
         System.out.println("Provide the complete path for ALL of the text files' repository (NOT ending with *.txt)");
         String repo = scanner.nextLine();
-
+        
         try {
             /*
              * Creating ability to read / write to files
@@ -55,8 +55,7 @@ import java.util.ArrayList;
                 System.out.println("There is a deadlock, however, this can be eliminated by putting off Project #" + checkNeedy(ReqMatrix));
              }
              else {
-                System.out.println("There is no deadlock.\nSequence: ");
-                for (int i : sequence) {System.out.println("P"+sequence.get(i)+" ");};
+                System.out.println("There is no deadlock.\nSequence: " + sequence);
              }
 
             /*
@@ -127,31 +126,35 @@ import java.util.ArrayList;
         int seqFin = 0, lockCount = 0;
         //iterate through projects until deadlock or sequence found
         for (int i = 0; seqFin < alloc.size(); i++) {
+            
             //check for deadlock
             if (lockCount == projects) {
                 return true;
             }
             //if this project has already been put into sequence
-            if (sequence.indexOf(i%5) == -1) {
+            if (sequence.indexOf(i%projects) != -1) {
                 continue;
             }
             //iterate values for each resource for a project
-            for (int j = 0; j < resources; j++) {
-                //if req too much of anything, that project is currently unattainble
-                if (alloc.get(i).get(j) + avail.get(i).get(j) < req.get(i).get(j)) {
-                    j = resources+1;
-                    lockCount++;
-                }
+            for (int j = 0; j <= resources; j++) {
                 //if resources can be met for a project
                 if (j == resources) {
                     seqFin++;
-                    sequence.add(i%5);
+                    sequence.add(i%projects);
+                    System.out.println(i%projects);
                     lockCount=0;
                     //adds the previously allocated resources to available
-                    for (int k : avail.get(i)) {
-                        avail.get(i).set(k, alloc.get(i).get(k)+avail.get(i).get(k));
+                    for (int k = 0; k < resources; k++) {
+                        avail.get(0).set(k, alloc.get(i%projects).get(k)+avail.get(0).get(k));
                     }
+                    continue;
                 }
+                //if req too much of anything, that project is currently unattainble
+                if (alloc.get(i%projects).get(j) + avail.get(0).get(j) < req.get(i%projects).get(j)) {
+                    j = resources+1;
+                    lockCount++;
+                }
+                
             }
         }
 
@@ -165,7 +168,6 @@ import java.util.ArrayList;
      */
     public static Integer checkNeedy(ArrayList<ArrayList<Integer>> req) {
         int maxRes = 0, tempRes = 0, theMax = 0;
-
         for (ArrayList<Integer> i : req) {
             for (int j : i) {
                 tempRes += j;
